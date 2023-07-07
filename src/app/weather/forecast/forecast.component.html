@@ -1,0 +1,22 @@
+
+<div class="container-fluid">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">5-day forecast for {{location}}</h3>
+
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let cond of forecast">
+        {{dates | date:"EEEE, LLL, d"}}
+        {{cond.main}}
+        - Min: {{cond.temp_min}}
+        - Max: {{cond.temp_max}}
+
+        <img *ngIf="cond.main == 'Rain'" class="icon" src="https://www.angulartraining.com/images/weather/rain.png">
+        <img class="icon" *ngIf="cond.main == 'Clear'" src="https://www.angulartraining.com/images/weather/sun.png">
+        <img class="icon" *ngIf="cond.main == 'Snow'" src="https://www.angulartraining.com/images/weather/snow.png">
+        <img class="icon" *ngIf="cond.main == 'Clouds'" src="https://www.angulartraining.com/images/weather/clouds.png">
+    </ul>
+  </div>
+  <button class="btn btn-success" tabindex="0" id="mainPageBtn" routerLink="/">&lt; Back to main page</button>
+</div>

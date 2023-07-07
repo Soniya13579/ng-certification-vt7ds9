@@ -1,0 +1,42 @@
+<div class="container-fluid">
+
+  <div class="well">
+    <h2>Enter a zipcode:</h2>
+    <input
+      class="form-control"
+      placeholder="Zipcode"
+      type="text"
+      id="addLocation"
+      #addZipcode
+    />
+    <br />
+    <button
+      class="btn btn-primary"
+      id="addLocationBtn"
+      (click)="addLocation(addZipcode)"
+    >
+      Add location
+    </button>
+  </div>
+
+  <div *ngIf="currentConditions.length > 0">
+    <div class="well flex" *ngFor="let cond of currentConditions">
+      <div>
+        <h3>{{cond.location}} ({{cond.zipcode}})</h3>
+        <h4>Current conditions: {{cond.main}}</h4>
+        <h4>Temperatures today:</h4>
+        <p>Current {{cond.temp}} - Max {{cond.temp_max}} - Min {{cond.temp_min}}</p>
+        <p>
+          <a [routerLink]="['forecast',cond.zipcode]">Show 5-day forecast for Rancho Cordova</a>
+        </p>
+      </div>
+      <div>
+        <span class="close" (click)="removeZipcode(cond.zipcode)">×</span>
+        <img *ngIf="cond.main == 'Rain'" src="https://www.angulartraining.com/images/weather/rain.png">
+        <img *ngIf="cond.main == 'Sunny'" src="https://www.angulartraining.com/images/weather/sun.png">
+        <img *ngIf="cond.main == 'Snow'" src="https://www.angulartraining.com/images/weather/snow.png">
+        <img *ngIf="cond.main == 'Clouds'" src="https://www.angulartraining.com/images/weather/clouds.png">
+      </div>
+    </div>
+
+</div>
